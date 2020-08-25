@@ -1,4 +1,3 @@
-import 'package:demo_bloc/constants/colors.dart';
 import 'package:demo_bloc/models/todo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +37,7 @@ class _ToDoItem extends State<ToDoItem> {
                   todo = tempTodo;
                 });
               },
-              activeColor: Color(bluePrimary),
+              activeColor: Theme.of(context).primaryColor,
             ),
           )
         ],

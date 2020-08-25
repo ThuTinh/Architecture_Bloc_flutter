@@ -1,5 +1,5 @@
 import 'package:demo_bloc/blocs/authentication/authentication_bloc.dart';
-import 'package:demo_bloc/constants/colors.dart';
+import 'package:demo_bloc/blocs/theme/theme_bloc.dart';
 import 'package:demo_bloc/repositories/loginRepository/login_repository.dart';
 import 'package:demo_bloc/repositories/loginRepository/login_repository_imp.dart';
 import 'package:demo_bloc/repositories/todo_repository/todo_repository.dart';
@@ -8,6 +8,7 @@ import 'package:demo_bloc/screens/login/login_page.dart';
 import 'package:demo_bloc/screens/splash/splash.dart';
 import 'package:demo_bloc/screens/todo/bloc/todo_bloc.dart';
 import 'package:demo_bloc/screens/todo/todo_screen.dart';
+import 'package:demo_bloc/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -47,6 +48,11 @@ void main() {
         return TodoBloc(todoRepository: todoRepository);
       },
     ),
+    BlocProvider<ThemeBloc>(
+      create: (context) {
+        return ThemeBloc();
+      },
+    ),
   ], child: App(loginRepository: loginRepository)));
 }
 
@@ -57,26 +63,28 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: ThemeData(
-          primaryColor: Color(bluePrimary),
-        ),
-        debugShowCheckedModeBanner: false,
-        home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-            // ignore: missing_return
-            builder: (context, state) {
-          if (state is AuthenticationIntialized) {
-            return Splash();
-          }
-          if (state is AuthenticationAuthenticated) {
-            return ToDo();
-          }
-          if (state is AuthenticationUnauthenticated) {
-            return LoginPage(
-              loginRepository: loginRepository,
-            );
-          }
-          return Text("hihuhuhuhu");
-        }));
+    return BlocBuilder<ThemeBloc, ThemeState>(builder: (context, theme) {
+      return MaterialApp(
+          theme: theme is ThemeBlue
+              ? CustomTheme.appThemeBlue(context)
+              : CustomTheme.appThemePure(context),
+          debugShowCheckedModeBanner: false,
+          home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+              // ignore: missing_return
+              builder: (context, state) {
+            if (state is AuthenticationIntialized) {
+              return Splash();
+            }
+            if (state is AuthenticationAuthenticated) {
+              return ToDo();
+            }
+            if (state is AuthenticationUnauthenticated) {
+              return LoginPage(
+                loginRepository: loginRepository,
+              );
+            }
+            return Text("hihuhuhuhu");
+          }));
+    });
   }
 }

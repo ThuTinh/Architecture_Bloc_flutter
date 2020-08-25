@@ -1,7 +1,6 @@
 import 'package:demo_bloc/screens/login/bloc/login_bloc.dart';
-import 'package:demo_bloc/screens/todo/todo_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:demo_bloc/constants/colors.dart';
+import 'package:demo_bloc/constants/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginForm extends StatefulWidget {
@@ -51,9 +50,10 @@ class _LoginForm extends State<LoginForm> {
                       TextSpan(
                           text: "O",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 40.0,
-                              color: Color(bluePrimary)))
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40.0,
+                            color: Theme.of(context).primaryColor,
+                          ))
                     ]),
               ),
             ),
@@ -83,10 +83,11 @@ class _LoginForm extends State<LoginForm> {
         child: Theme(
           data: Theme.of(context).copyWith(
             // override textfield's icon color when selected
-            primaryColor: Color(bluePrimary),
+            primaryColor: Theme.of(context).primaryColor,
           ),
           child: TextField(
-            cursorColor: Color(bluePrimary),
+            // if we custom cursoColor in custom theme we dont need line below
+            // cursorColor: Color(bluePrimary),
             controller: _usernameController,
             decoration: InputDecoration(
               hintText: "Email",
@@ -105,10 +106,11 @@ class _LoginForm extends State<LoginForm> {
         padding: EdgeInsets.only(left: 40.0, right: 40.0),
         child: Theme(
           data: Theme.of(context).copyWith(
-            primaryColor: Color(bluePrimary),
+            primaryColor: Theme.of(context).primaryColor,
           ),
           child: TextField(
-            cursorColor: Color(bluePrimary),
+            // if we custom cursoColor in custom theme we dont need line below
+            // cursorColor: Color(bluePrimary),
             controller: _passwordController,
             decoration: InputDecoration(
               hintText: "Password",
@@ -128,7 +130,7 @@ class _LoginForm extends State<LoginForm> {
         padding: EdgeInsets.only(left: 40.0, right: 40.0),
         child: Theme(
             data: Theme.of(context).copyWith(
-              primaryColor: Color(bluePrimary),
+              primaryColor: Theme.of(context).primaryColor,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,8 +144,9 @@ class _LoginForm extends State<LoginForm> {
                           margin: EdgeInsets.only(right: 10.0),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color:
-                                value ? Color(bluePrimary) : Colors.transparent,
+                            color: value
+                                ? Theme.of(context).primaryColor
+                                : Colors.transparent,
                           ),
                           child: Padding(
                             padding: EdgeInsets.all(0),
@@ -156,7 +159,7 @@ class _LoginForm extends State<LoginForm> {
                                 : Icon(
                                     Icons.check_box_outline_blank,
                                     size: 18.0,
-                                    color: Color(bluePrimary),
+                                    color: Theme.of(context).primaryColor,
                                   ),
                           ),
                         ),
@@ -169,7 +172,9 @@ class _LoginForm extends State<LoginForm> {
                 ),
                 Text(
                   "Forgot password?",
-                  style: TextStyle(color: Color(bluePrimary)),
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
                 )
               ],
             )));
@@ -186,7 +191,7 @@ class _LoginForm extends State<LoginForm> {
         padding: EdgeInsets.only(left: 40.0, right: 40.0),
         child: Theme(
             data: Theme.of(context).copyWith(
-              primaryColor: Color(bluePrimary),
+              primaryColor: Theme.of(context).primaryColor,
             ),
             child: Container(
               width: double.infinity,
@@ -194,7 +199,7 @@ class _LoginForm extends State<LoginForm> {
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(20.0),
                 ),
-                color: Color(bluePrimary),
+                color: Theme.of(context).primaryColor,
                 onPressed:
                     // _navigator.pushAndRemoveUntil(ToDo.route(), (route) => false);
 
