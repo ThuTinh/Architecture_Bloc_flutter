@@ -1,8 +1,6 @@
-import 'package:demo_bloc/constants/api.dart';
 import 'package:demo_bloc/models/modelApi/user_login.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'dart:convert';
 
 class LoginService {
   Future<Token> login(UserLogin userLogin) async {

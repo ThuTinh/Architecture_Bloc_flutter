@@ -1,0 +1,10 @@
+
+{
+  "tab_home": "Home_fi",
+  "email": "sähköposti",
+  "password":"Salasana",
+  "remember_me":"Muista minut",
+  "login":"Kirjaudu sisään",
+  "forgot_pass":"Unohtuiko salasana",
+  "title_todo": "Tehdä"
+}

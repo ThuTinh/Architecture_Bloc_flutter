@@ -1,7 +1,9 @@
 import 'package:demo_bloc/screens/login/bloc/login_bloc.dart';
+import 'package:demo_bloc/utils/app_localizations.dart';
+import 'package:demo_bloc/widgets/dropdown_languages_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:demo_bloc/constants/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -11,10 +13,14 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginForm extends State<LoginForm> {
+  var logger = Logger(
+    printer: PrettyPrinter(),
+  );
   bool value = false;
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   void togleCheckBox() {
+    logger.i("user togle checkbox remember me");
     setState(() {
       value = !value;
     });
@@ -35,41 +41,63 @@ class _LoginForm extends State<LoginForm> {
     }, child: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
       return Material(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 20.0),
-              child: RichText(
-                text: TextSpan(
-                    text: "FACI",
-                    style: TextStyle(
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: "O",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 40.0,
-                            color: Theme.of(context).primaryColor,
-                          ))
-                    ]),
+            Expanded(
+              flex: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 20.0, right: 30.0),
+                    child: DropdownLanguagesWigets(),
+                  )
+                ],
               ),
             ),
-            _emailInput(context),
-            SizedBox(
-              height: 20.0,
-            ),
-            _passwordInput(context),
-            SizedBox(
-              height: 20.0,
-            ),
-            _rememberForgotPass(context),
-            SizedBox(
-              height: 20.0,
-            ),
-            _buttonLogin(context, state)
+            Expanded(
+              flex: 2,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(bottom: 20.0),
+                    child: RichText(
+                      text: TextSpan(
+                          text: "FACI",
+                          style: TextStyle(
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: "O",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40.0,
+                                  color: Theme.of(context).primaryColor,
+                                ))
+                          ]),
+                    ),
+                  ),
+                  _emailInput(context),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  _passwordInput(context),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  _rememberForgotPass(context),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  _buttonLogin(context, state),
+                  Text(AppLocalizations.of(context).translate('tab_home')),
+                ],
+              ),
+            )
           ],
         ),
       );
@@ -90,7 +118,7 @@ class _LoginForm extends State<LoginForm> {
             // cursorColor: Color(bluePrimary),
             controller: _usernameController,
             decoration: InputDecoration(
-              hintText: "Email",
+              hintText: AppLocalizations.of(context).translate('email'),
               prefixIcon: Icon(Icons.mail),
               // suffixIcon: Icon(Icons.email),
               // focusedBorder: UnderlineInputBorder(
@@ -113,7 +141,7 @@ class _LoginForm extends State<LoginForm> {
             // cursorColor: Color(bluePrimary),
             controller: _passwordController,
             decoration: InputDecoration(
-              hintText: "Password",
+              hintText: AppLocalizations.of(context).translate('password'),
               prefixIcon: Icon(
                 Icons.lock,
               ),
@@ -163,15 +191,14 @@ class _LoginForm extends State<LoginForm> {
                                   ),
                           ),
                         ),
-                        Text(
-                          "Remember me",
-                        ),
+                        Text(AppLocalizations.of(context)
+                            .translate('remember_me')),
                       ],
                     ),
                   ),
                 ),
                 Text(
-                  "Forgot password?",
+                  AppLocalizations.of(context).translate('forgot_pass'),
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                   ),
@@ -182,6 +209,9 @@ class _LoginForm extends State<LoginForm> {
 
   Widget _buttonLogin(BuildContext context, dynamic state) {
     _onLoginButtonPress() {
+      logger.i("user press login info");
+      logger.w("user press login wraring");
+      logger.e("user press login errr");
       BlocProvider.of<LoginBloc>(context).add(LoginButtonPress(
           password: _passwordController.text,
           username: _usernameController.text));
@@ -207,7 +237,7 @@ class _LoginForm extends State<LoginForm> {
                     //     context, MaterialPageRoute(builder: (context) => ToDo()));\
                     state is! LoginLoading ? _onLoginButtonPress : null,
                 child: Text(
-                  "Login",
+                  AppLocalizations.of(context).translate('login'),
                   style: TextStyle(color: Colors.white),
                 ),
               ),

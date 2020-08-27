@@ -1,8 +1,10 @@
 import 'package:demo_bloc/blocs/authentication/authentication_bloc.dart';
 import 'package:demo_bloc/blocs/theme/theme_bloc.dart';
 import 'package:demo_bloc/constants/common.dart';
+import 'package:demo_bloc/screens/comments/comments_screen.dart';
 import 'package:demo_bloc/screens/todo/bloc/todo_bloc.dart';
 import 'package:demo_bloc/screens/todo/widgets/todo_Item.dart';
+import 'package:demo_bloc/utils/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +18,7 @@ class ToDo extends StatefulWidget {
 
 class _ToDo extends State<ToDo> {
   ThemeType _themeType;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
     BlocProvider.of<TodoBloc>(context).add(GetTodos(userId: 1));
@@ -123,10 +126,11 @@ class _ToDo extends State<ToDo> {
     }
 
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
-          "To do",
+          AppLocalizations.of(context).translate('title_todo'),
           style: TextStyle(color: Colors.white),
         ),
         actions: [
@@ -159,11 +163,45 @@ class _ToDo extends State<ToDo> {
       ),
       body: BlocBuilder<TodoBloc, TodoState>(builder: (context, state) {
         if (state is GetTodoSucess) {
-          return ListView.builder(
-            itemBuilder: (context, index) => ToDoItem(
-              todo: state.todos[index],
-            ),
-            itemCount: state.todos.length,
+          return Column(
+            children: [
+              Expanded(
+                  child: ListView.builder(
+                itemBuilder: (context, index) => ToDoItem(
+                  todo: state.todos[index],
+                ),
+                itemCount: state.todos.length,
+              )),
+              Container(
+                margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                width: MediaQuery.of(context).size.width / 2,
+                child: RaisedButton(
+                  color: Theme.of(context).accentColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  onPressed: () async {
+                    final result = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CommentsScreen(),
+                          settings: RouteSettings(arguments: "HELLO NE")),
+                    );
+
+                    // final snackBar = SnackBar(content: Text("Hello, world"));
+                    // _scaffoldKey.currentState.removeCurrentSnackBar();
+                    // _scaffoldKey.currentState.showSnackBar(snackBar);
+                    Scaffold.of(context)
+                      ..removeCurrentSnackBar()
+                      ..showSnackBar(
+                          SnackBar(content: Text("${result ?? "no"}")));
+                  },
+                  child: Text(
+                    "Advance",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              )
+            ],
           );
         } else {
           if (state is GetToDoFail)
