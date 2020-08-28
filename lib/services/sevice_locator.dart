@@ -1,3 +1,4 @@
+import 'package:demo_bloc/models/todo.dart';
 import 'package:demo_bloc/repositories/loginRepository/login_repository.dart';
 import 'package:demo_bloc/repositories/loginRepository/login_repository_imp.dart';
 import 'package:demo_bloc/repositories/todo_repository/todo_repository.dart';
@@ -16,8 +17,7 @@ void setUpServiceLocator() {
       .registerLazySingleton<LoginRepository>(() => LoginRepositoryImpl());
   serviceLocator
       .registerLazySingleton<TodoRepository>(() => TodoRepositoryImp());
-  // serviceLocator
-  //     .registerFactory<CalculateViewModel>(() => CalculateViewModel());
+  serviceLocator.registerFactory<Todo>(() => Todo());
   // serviceLocator
   //     .registerFactory<FavouriteViewModel>(() => FavouriteViewModel());
 }

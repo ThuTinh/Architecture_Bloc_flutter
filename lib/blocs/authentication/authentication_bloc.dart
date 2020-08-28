@@ -1,17 +1,15 @@
 import 'package:bloc/bloc.dart';
-import 'package:demo_bloc/repositories/loginRepository/login_repository_imp.dart';
+import 'package:demo_bloc/repositories/loginRepository/login_repository.dart';
+import 'package:demo_bloc/services/sevice_locator.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 part 'authentication_state.dart';
 part 'authentication_event.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final LoginRepositoryImpl loginRepository;
+  LoginRepository loginRepository = serviceLocator<LoginRepository>();
 
-  AuthenticationBloc({@required this.loginRepository})
-      : assert(loginRepository != null),
-        super(AuthenticationUnauthenticated());
+  AuthenticationBloc() : super(AuthenticationUnauthenticated());
 
   AuthenticationState get initialState => AuthenticationUnauthenticated();
 

@@ -9,7 +9,7 @@ import 'package:demo_bloc/screens/login/login_page.dart';
 import 'package:demo_bloc/screens/splash/splash.dart';
 import 'package:demo_bloc/screens/todo/bloc/todo_bloc.dart';
 import 'package:demo_bloc/screens/todo/todo_screen.dart';
-// import 'package:demo_bloc/services/sevice_locator.dart';
+import 'package:demo_bloc/services/sevice_locator.dart';
 import 'package:demo_bloc/utils/app_localizations.dart';
 import 'package:demo_bloc/utils/theme.dart';
 import 'package:flutter/material.dart';
@@ -37,21 +37,21 @@ class SimpleBlocObserver extends BlocObserver {
 }
 
 void main() {
-  // setUpServiceLocator();
-  final LoginRepository loginRepository = LoginRepositoryImpl();
-  final TodoRepository todoRepository = TodoRepositoryImp();
+  setUpServiceLocator();
+  // final LoginRepository loginRepository = LoginRepositoryImpl();
+  // final TodoRepository todoRepository = TodoRepositoryImp();
 
   Bloc.observer = SimpleBlocObserver();
   runApp(MultiBlocProvider(
       providers: [
         BlocProvider<AuthenticationBloc>(
           create: (context) {
-            return AuthenticationBloc(loginRepository: loginRepository);
+            return AuthenticationBloc();
           },
         ),
         BlocProvider<TodoBloc>(
           create: (context) {
-            return TodoBloc(todoRepository: todoRepository);
+            return TodoBloc();
           },
         ),
         BlocProvider<ThemeBloc>(
@@ -68,14 +68,13 @@ void main() {
       // child: App(loginRepository: loginRepository)
       child: BlocBuilder<LanguageBloc, LanguageState>(
           builder: (context, language) {
-        return App(loginRepository: loginRepository);
+        return App();
       })));
 }
 
 class App extends StatelessWidget {
-  final LoginRepository loginRepository;
-
-  App({Key key, @required this.loginRepository}) : super(key: key);
+  final LoginRepository loginRepository = serviceLocator<LoginRepository>();
+  App({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
