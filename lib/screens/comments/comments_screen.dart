@@ -1,3 +1,4 @@
+import 'package:demo_bloc/screens/amazing_ui_mastercard/amazing_mastercard_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,34 +28,28 @@ class CommentsScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context, "say hi");
                 },
-                child: Text("Back"),
+                child: Text("Back", style: TextStyle(color: Colors.white)),
+                color: Theme.of(context).primaryColor,
               ),
-              TextField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: "Name",
-                  hintText: "Please enter your name",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0)),
-                ),
-              ),
-              GestureDetector(
-                child: Container(
-                  margin: EdgeInsets.only(top: 20.0),
-                  decoration: BoxDecoration(
-                    // image: DecorationImage(
-                    //     image: NetworkImage(
-                    //       "http://bit.ly/flutter_tiger",
-                    //     ),
-                    //     fit: BoxFit.contain),
-                    color: Colors.amber,
-                    // gradient: LinearGradient(
-                    //     colors: [Colors.amber, Colors.yellow])
+              // TextField(
+              //   keyboardType: TextInputType.number,
+              //   decoration: InputDecoration(
+              //     labelText: "Name",
+              //     hintText: "Please enter your name",
+              //     border: OutlineInputBorder(
+              //         borderRadius: BorderRadius.circular(5.0)),
+              //   ),
+              // ),
+              RaisedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => AmazingMastercard()));
+                  },
+                  child: Text(
+                    "Show mastercard",
+                    style: TextStyle(color: Colors.white),
                   ),
-                  height: 150.0,
-                  width: 150.0,
-                ),
-              )
+                  color: Theme.of(context).primaryColor)
             ],
           ),
         ));

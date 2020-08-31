@@ -62,6 +62,7 @@ flutter:
     - i18n/localization_et.json
     - i18n/localization_en.json
     - i18n/localization_fi.json
+    - res/images/logo_mastercard.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
@@ -73,6 +74,18 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with acls
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: LondrinaSolid
+      fonts:
+        - asset: fonts/LondrinaSolid-Black.ttf
+          weight: 900
+        - asset: fonts/LondrinaSolid-Light.ttf
+          weight: 300
+        - asset: fonts/LondrinaSolid-Regular.ttf
+          weight: 400
+        - asset: fonts/LondrinaSolid-Thin.ttf
+          weight: 100
+
   # fonts:
   #   - family: Schyler
   #     fonts:
