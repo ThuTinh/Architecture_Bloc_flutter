@@ -1,4 +1,8 @@
 import 'package:demo_bloc/screens/amazing_ui_mastercard/amazing_mastercard_page.dart';
+import 'package:demo_bloc/screens/camera/camera_screen.dart';
+import 'package:demo_bloc/screens/permistion/permistion_screen.dart';
+import 'package:demo_bloc/screens/pick_image/index.dart';
+import 'package:demo_bloc/screens/screenshot/screenshot.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -47,6 +51,46 @@ class CommentsScreen extends StatelessWidget {
                   },
                   child: Text(
                     "Show mastercard",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  color: Theme.of(context).primaryColor),
+              RaisedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => PermistionScreen()));
+                  },
+                  child: Text(
+                    "Permistion screen",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  color: Theme.of(context).primaryColor),
+              RaisedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => TakePictureScreen()));
+                  },
+                  child: Text(
+                    "Camera screen",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  color: Theme.of(context).primaryColor),
+              RaisedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => ScreenShotTest()));
+                  },
+                  child: Text(
+                    "Screenshot screen",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  color: Theme.of(context).primaryColor),
+              RaisedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => ImagePickerTest()));
+                  },
+                  child: Text(
+                    "pick image screen",
                     style: TextStyle(color: Colors.white),
                   ),
                   color: Theme.of(context).primaryColor)

@@ -35,6 +35,11 @@ dependencies:
   shared_preferences: ^0.5.8
   logger: ^0.9.2
   get_it: ^3.0.3
+  permission_handler: ^5.0.1+1
+  camera: ^0.5.8+5
+  screenshot: ^0.2.0
+  image_picker: ^0.6.7+7
+  image_gallery_saver: '^1.5.0'
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3

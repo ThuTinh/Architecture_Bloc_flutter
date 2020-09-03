@@ -2,9 +2,6 @@ import 'package:demo_bloc/blocs/authentication/authentication_bloc.dart';
 import 'package:demo_bloc/blocs/language/language_bloc.dart';
 import 'package:demo_bloc/blocs/theme/theme_bloc.dart';
 import 'package:demo_bloc/repositories/loginRepository/login_repository.dart';
-import 'package:demo_bloc/repositories/loginRepository/login_repository_imp.dart';
-import 'package:demo_bloc/repositories/todo_repository/todo_repository.dart';
-import 'package:demo_bloc/repositories/todo_repository/todo_repository_imp.dart';
 import 'package:demo_bloc/screens/login/login_page.dart';
 import 'package:demo_bloc/screens/splash/splash.dart';
 import 'package:demo_bloc/screens/todo/bloc/todo_bloc.dart';
@@ -36,7 +33,9 @@ class SimpleBlocObserver extends BlocObserver {
   }
 }
 
-void main() {
+Future<void> main() async {
+  // Obtain a list of the available cameras on the device.
+
   setUpServiceLocator();
   // final LoginRepository loginRepository = LoginRepositoryImpl();
   // final TodoRepository todoRepository = TodoRepositoryImp();
