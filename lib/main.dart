@@ -5,6 +5,7 @@ import 'package:demo_bloc/repositories/loginRepository/login_repository.dart';
 import 'package:demo_bloc/repositories/loginRepository/login_repository_imp.dart';
 import 'package:demo_bloc/repositories/todo_repository/todo_repository.dart';
 import 'package:demo_bloc/repositories/todo_repository/todo_repository_imp.dart';
+import 'package:demo_bloc/screens/home/home_screen.dart';
 import 'package:demo_bloc/screens/login/login_page.dart';
 import 'package:demo_bloc/screens/splash/splash.dart';
 import 'package:demo_bloc/screens/todo/bloc/todo_bloc.dart';
@@ -103,7 +104,7 @@ class App extends StatelessWidget {
               return Splash();
             }
             if (state is AuthenticationAuthenticated) {
-              return ToDo();
+              return Home();
             }
             if (state is AuthenticationUnauthenticated) {
               return LoginPage(

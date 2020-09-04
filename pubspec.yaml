@@ -62,6 +62,7 @@ flutter:
     - i18n/localization_et.json
     - i18n/localization_en.json
     - i18n/localization_fi.json
+    - images/logo/logo_omena.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
