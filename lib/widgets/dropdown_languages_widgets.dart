@@ -1,6 +1,5 @@
 import 'package:demo_bloc/blocs/language/language_bloc.dart';
 import 'package:demo_bloc/constants/common.dart';
-import 'package:demo_bloc/utils/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -46,7 +46,7 @@ class _Home extends State<Home> {
             type: BottomNavigationBarType.fixed,
             items: [
               BottomNavigationBarItem(
-                  icon: new Icon(Icons.home),
+                  icon: new Icon(Icons.search),
                   title: new Text(
                     "Book a room",
                   )),
@@ -56,9 +56,9 @@ class _Home extends State<Home> {
                     "My booking",
                   )),
               BottomNavigationBarItem(
-                  icon: new Icon(Icons.person), title: new Text("Helps")),
+                  icon: new Icon(Icons.help), title: new Text("Helps")),
               BottomNavigationBarItem(
-                  icon: new Icon(Icons.person), title: new Text("Settings")),
+                  icon: new Icon(Icons.settings), title: new Text("Settings")),
             ]),
         body: _children[_currentIndex]);
   }
